@@ -8,8 +8,8 @@ export let menu = [
 
     {
         name: "Hamburger",
-        ingredients: "beef,cheese,lettuce",
-        price: 12
+        ingredients: "Beef,cheese,lettuce",
+        price: 14
     },
 
     {

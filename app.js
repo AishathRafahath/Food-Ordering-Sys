@@ -30,7 +30,9 @@ let removeBtns = []
 let sum = 0;
 addToOrderBtn.forEach((btn,index) =>{
     btn.addEventListener('click',()=>{
+       
         renderArr.push(menu[index]);
+        console.log(renderArr,index);
         render(renderArr,index);
         sum += menu[index].price;
         totalPrice.innerHTML = `$${sum}`
@@ -42,13 +44,13 @@ const renderDiv = document.querySelector('.renderDiv');
 
 
 
-function render(array,indexNum){
+function render(arr,index){
     renderDiv.innerHTML += 
     `
     <div class="renderItem">
-    <h4>${array[indexNum].name}</h4><span class="removeOrder">remove</span>
+    <h4>${arr[index].name}</h4> <span class="removeOrder"> remove </span>
     <div class="renderPriceDiv">
-    <p>$${array[indexNum].price}</p>
+    <p>$${arr[index].price}</p>
     </div>
     </div>
     `
@@ -91,6 +93,40 @@ function renderUpdatedOrder(updatedArr){
     getRemoveBtns(removeBtnsNodeList);
 }
 
+const completeOrderBtn = document.querySelector('.completeOrderBtn');
+const modalContainer = document.querySelector('.modalContainer');
+const mainContainer = document.querySelector('.mainContainer');
+
+if(renderDiv != null){
+    console.log('not empty');
+}else{
+    console.log('empty');
+}
+
+completeOrderBtn.addEventListener('click',()=>{
+    modalContainer.style.display = 'inline'
+    mainContainer.style.backgroundColor = '#E2E2E2'
+})
+
+const mainOrdersContainer = document.querySelector('.mainOrdersContainer');
+const paymentBtn = document.querySelector('.paymentBtn');
+paymentBtn.addEventListener('click',()=>{
+    modalContainer.style.display = 'none'
+    mainContainer.style.backgroundColor = 'white'
+    mainOrdersContainer.innerHTML = `Your order is on it's way, Enjoy!`
+})
+
+
+/*
+ Need to refactor 
+ 1. Theres a bug in rendering when button is clicked
+ 2. Complete order btn should only be pressed if there is an order
+ 3. Payment should only be made if the input fields are filled
+ 4. Message should be given with name
+ 5. Rate experience
+ 6. Ask if the user would like to place another order
+ 7. theme toggle for user
+*/
 
 
 
